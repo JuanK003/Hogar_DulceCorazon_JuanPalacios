@@ -1,0 +1,36 @@
+﻿@model Hogar_Dulce_Corazón____Juan_Palacios.Models.Illness
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Illness</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+    </dl>
+</div>
+<p class="btn btn-primary btn-lg">
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID_Illeness })
+</p>
+
+<p class="btn btn-primary btn-lg">
+    @Html.ActionLink("Back to List", "Index")
+</p>

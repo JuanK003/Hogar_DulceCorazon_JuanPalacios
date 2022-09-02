@@ -1,0 +1,64 @@
+﻿@model Hogar_Dulce_Corazón____Juan_Palacios.Models.Children
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<h2>Eliminar</h2>
+
+<h3>Estas seguro de eliminar este campo?</h3>
+<div>
+    <h4>Children</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CUI)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CUI)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date_Birth)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date_Birth)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Genre.Genre_Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Genre.Genre_Type)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-primary btn-lg" />
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

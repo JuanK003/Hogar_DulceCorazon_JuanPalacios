@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="08d7504a895043369824beeec4b7ef3b" Name="Diagram1">
+        <EntityTypeShape EntityType="DulceCorazonModel.Adoption_Detail" Width="1.5" PointX="5.25" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DulceCorazonModel.Adoptive_Parents" Width="1.5" PointX="7.5" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DulceCorazonModel.Blood_Type" Width="1.5" PointX="6" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DulceCorazonModel.Children" Width="1.5" PointX="3" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DulceCorazonModel.Genre" Width="1.5" PointX="0.75" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DulceCorazonModel.Illness" Width="1.5" PointX="6" PointY="16.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DulceCorazonModel.Medical_History" Width="1.5" PointX="8.25" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DulceCorazonModel.Temporal_Place" Width="1.5" PointX="5.25" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DulceCorazonModel.Temporary_Caregiver" Width="1.5" PointX="3" PointY="7.25" IsExpanded="true" />
+        <AssociationConnector Association="DulceCorazonModel.Relationship7" ManuallyRouted="false" />
+        <AssociationConnector Association="DulceCorazonModel.Relationship8" ManuallyRouted="false" />
+        <AssociationConnector Association="DulceCorazonModel.Relationship2" ManuallyRouted="false" />
+        <AssociationConnector Association="DulceCorazonModel.Relationship6" ManuallyRouted="false" />
+        <AssociationConnector Association="DulceCorazonModel.Relationship11" ManuallyRouted="false" />
+        <AssociationConnector Association="DulceCorazonModel.Relationship1" ManuallyRouted="false" />
+        <AssociationConnector Association="DulceCorazonModel.Relationship5" ManuallyRouted="false" />
+        <AssociationConnector Association="DulceCorazonModel.Relationship9" ManuallyRouted="false" />
+        <AssociationConnector Association="DulceCorazonModel.Relationship3" ManuallyRouted="false" />
+        <AssociationConnector Association="DulceCorazonModel.Relationship10" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

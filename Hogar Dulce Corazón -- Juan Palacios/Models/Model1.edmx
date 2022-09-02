@@ -1,0 +1,674 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DulceCorazonModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Adoption_Detail">
+          <Key>
+            <PropertyRef Name="ID_AdoptionDetail" />
+          </Key>
+          <Property Name="ID_AdoptionDetail" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Moving_Date" Type="date" Nullable="false" />
+          <Property Name="Adoption_Date" Type="date" Nullable="false" />
+          <Property Name="Return_Date" Type="date" Nullable="false" />
+          <Property Name="ID_Children" Type="int" />
+        </EntityType>
+        <EntityType Name="Adoptive_Parents">
+          <Key>
+            <PropertyRef Name="ID_AdoptiveParents" />
+          </Key>
+          <Property Name="ID_AdoptiveParents" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Address" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Cellphone" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Work_Address" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="ID_Genre" Type="int" />
+          <Property Name="ID_MedicalHistory" Type="int" />
+          <Property Name="ID_AdoptionDetail" Type="int" />
+        </EntityType>
+        <EntityType Name="Blood_Type">
+          <Key>
+            <PropertyRef Name="ID_BloodType" />
+          </Key>
+          <Property Name="ID_BloodType" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name_Blood" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Children">
+          <Key>
+            <PropertyRef Name="ID_Children" />
+          </Key>
+          <Property Name="ID_Children" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="CUI" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Date_Birth" Type="datetime" Nullable="false" />
+          <Property Name="ID_Genre" Type="int" />
+        </EntityType>
+        <EntityType Name="Genre">
+          <Key>
+            <PropertyRef Name="ID_Genre" />
+          </Key>
+          <Property Name="ID_Genre" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Genre_Type" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Illness">
+          <Key>
+            <PropertyRef Name="ID_Illeness" />
+          </Key>
+          <Property Name="ID_Illeness" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Medical_History">
+          <Key>
+            <PropertyRef Name="ID_MedicalHistory" />
+          </Key>
+          <Property Name="ID_MedicalHistory" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Children" Type="int" />
+          <Property Name="Description" Type="text" Nullable="false" />
+          <Property Name="ID_Illeness" Type="int" />
+          <Property Name="Treatment" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="Evaluation_Date" Type="datetime" Nullable="false" />
+          <Property Name="ID_BloodType" Type="int" />
+        </EntityType>
+        <EntityType Name="Temporal_Place">
+          <Key>
+            <PropertyRef Name="ID_TemporalPlace" />
+          </Key>
+          <Property Name="ID_TemporalPlace" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Address" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Cellphone" Type="varchar" MaxLength="75" Nullable="false" />
+          <Property Name="ID_Children" Type="int" />
+          <Property Name="ID_TemporaryCaregiver" Type="int" />
+        </EntityType>
+        <EntityType Name="Temporary_Caregiver">
+          <Key>
+            <PropertyRef Name="ID_TemporaryCaregiver" />
+          </Key>
+          <Property Name="ID_TemporaryCaregiver" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Address" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Cellphone" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <Association Name="Relationship1">
+          <End Role="Genre" Type="Self.Genre" Multiplicity="0..1" />
+          <End Role="Children" Type="Self.Children" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Genre">
+              <PropertyRef Name="ID_Genre" />
+            </Principal>
+            <Dependent Role="Children">
+              <PropertyRef Name="ID_Genre" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship10">
+          <End Role="Temporary_Caregiver" Type="Self.Temporary_Caregiver" Multiplicity="0..1" />
+          <End Role="Temporal_Place" Type="Self.Temporal_Place" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Temporary_Caregiver">
+              <PropertyRef Name="ID_TemporaryCaregiver" />
+            </Principal>
+            <Dependent Role="Temporal_Place">
+              <PropertyRef Name="ID_TemporaryCaregiver" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship11">
+          <End Role="Blood_Type" Type="Self.Blood_Type" Multiplicity="0..1" />
+          <End Role="Medical_History" Type="Self.Medical_History" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Blood_Type">
+              <PropertyRef Name="ID_BloodType" />
+            </Principal>
+            <Dependent Role="Medical_History">
+              <PropertyRef Name="ID_BloodType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship2">
+          <End Role="Genre" Type="Self.Genre" Multiplicity="0..1" />
+          <End Role="Adoptive_Parents" Type="Self.Adoptive_Parents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Genre">
+              <PropertyRef Name="ID_Genre" />
+            </Principal>
+            <Dependent Role="Adoptive_Parents">
+              <PropertyRef Name="ID_Genre" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship3">
+          <End Role="Illness" Type="Self.Illness" Multiplicity="0..1" />
+          <End Role="Medical_History" Type="Self.Medical_History" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Illness">
+              <PropertyRef Name="ID_Illeness" />
+            </Principal>
+            <Dependent Role="Medical_History">
+              <PropertyRef Name="ID_Illeness" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship5">
+          <End Role="Children" Type="Self.Children" Multiplicity="0..1" />
+          <End Role="Medical_History" Type="Self.Medical_History" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Children">
+              <PropertyRef Name="ID_Children" />
+            </Principal>
+            <Dependent Role="Medical_History">
+              <PropertyRef Name="ID_Children" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship6">
+          <End Role="Medical_History" Type="Self.Medical_History" Multiplicity="0..1" />
+          <End Role="Adoptive_Parents" Type="Self.Adoptive_Parents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Medical_History">
+              <PropertyRef Name="ID_MedicalHistory" />
+            </Principal>
+            <Dependent Role="Adoptive_Parents">
+              <PropertyRef Name="ID_MedicalHistory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship7">
+          <End Role="Children" Type="Self.Children" Multiplicity="0..1" />
+          <End Role="Adoption_Detail" Type="Self.Adoption_Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Children">
+              <PropertyRef Name="ID_Children" />
+            </Principal>
+            <Dependent Role="Adoption_Detail">
+              <PropertyRef Name="ID_Children" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship8">
+          <End Role="Adoption_Detail" Type="Self.Adoption_Detail" Multiplicity="0..1" />
+          <End Role="Adoptive_Parents" Type="Self.Adoptive_Parents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Adoption_Detail">
+              <PropertyRef Name="ID_AdoptionDetail" />
+            </Principal>
+            <Dependent Role="Adoptive_Parents">
+              <PropertyRef Name="ID_AdoptionDetail" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship9">
+          <End Role="Children" Type="Self.Children" Multiplicity="0..1" />
+          <End Role="Temporal_Place" Type="Self.Temporal_Place" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Children">
+              <PropertyRef Name="ID_Children" />
+            </Principal>
+            <Dependent Role="Temporal_Place">
+              <PropertyRef Name="ID_Children" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DulceCorazonModelStoreContainer">
+          <EntitySet Name="Adoption_Detail" EntityType="Self.Adoption_Detail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Adoptive_Parents" EntityType="Self.Adoptive_Parents" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Blood_Type" EntityType="Self.Blood_Type" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Children" EntityType="Self.Children" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Genre" EntityType="Self.Genre" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Illness" EntityType="Self.Illness" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Medical_History" EntityType="Self.Medical_History" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Temporal_Place" EntityType="Self.Temporal_Place" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Temporary_Caregiver" EntityType="Self.Temporary_Caregiver" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="Relationship1" Association="Self.Relationship1">
+            <End Role="Genre" EntitySet="Genre" />
+            <End Role="Children" EntitySet="Children" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship10" Association="Self.Relationship10">
+            <End Role="Temporary_Caregiver" EntitySet="Temporary_Caregiver" />
+            <End Role="Temporal_Place" EntitySet="Temporal_Place" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship11" Association="Self.Relationship11">
+            <End Role="Blood_Type" EntitySet="Blood_Type" />
+            <End Role="Medical_History" EntitySet="Medical_History" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship2" Association="Self.Relationship2">
+            <End Role="Genre" EntitySet="Genre" />
+            <End Role="Adoptive_Parents" EntitySet="Adoptive_Parents" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship3" Association="Self.Relationship3">
+            <End Role="Illness" EntitySet="Illness" />
+            <End Role="Medical_History" EntitySet="Medical_History" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship5" Association="Self.Relationship5">
+            <End Role="Children" EntitySet="Children" />
+            <End Role="Medical_History" EntitySet="Medical_History" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship6" Association="Self.Relationship6">
+            <End Role="Medical_History" EntitySet="Medical_History" />
+            <End Role="Adoptive_Parents" EntitySet="Adoptive_Parents" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship7" Association="Self.Relationship7">
+            <End Role="Children" EntitySet="Children" />
+            <End Role="Adoption_Detail" EntitySet="Adoption_Detail" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship8" Association="Self.Relationship8">
+            <End Role="Adoption_Detail" EntitySet="Adoption_Detail" />
+            <End Role="Adoptive_Parents" EntitySet="Adoptive_Parents" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship9" Association="Self.Relationship9">
+            <End Role="Children" EntitySet="Children" />
+            <End Role="Temporal_Place" EntitySet="Temporal_Place" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DulceCorazonModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Adoption_Detail">
+          <Key>
+            <PropertyRef Name="ID_AdoptionDetail" />
+          </Key>
+          <Property Name="ID_AdoptionDetail" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Moving_Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Adoption_Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Return_Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ID_Children" Type="Int32" />
+          <NavigationProperty Name="Children" Relationship="Self.Relationship7" FromRole="Adoption_Detail" ToRole="Children" />
+          <NavigationProperty Name="Adoptive_Parents" Relationship="Self.Relationship8" FromRole="Adoption_Detail" ToRole="Adoptive_Parents" />
+        </EntityType>
+        <EntityType Name="Adoptive_Parents">
+          <Key>
+            <PropertyRef Name="ID_AdoptiveParents" />
+          </Key>
+          <Property Name="ID_AdoptiveParents" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Cellphone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Work_Address" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ID_Genre" Type="Int32" />
+          <Property Name="ID_MedicalHistory" Type="Int32" />
+          <Property Name="ID_AdoptionDetail" Type="Int32" />
+          <NavigationProperty Name="Adoption_Detail" Relationship="Self.Relationship8" FromRole="Adoptive_Parents" ToRole="Adoption_Detail" />
+          <NavigationProperty Name="Genre" Relationship="Self.Relationship2" FromRole="Adoptive_Parents" ToRole="Genre" />
+          <NavigationProperty Name="Medical_History" Relationship="Self.Relationship6" FromRole="Adoptive_Parents" ToRole="Medical_History" />
+        </EntityType>
+        <EntityType Name="Blood_Type">
+          <Key>
+            <PropertyRef Name="ID_BloodType" />
+          </Key>
+          <Property Name="ID_BloodType" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name_Blood" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Medical_History" Relationship="Self.Relationship11" FromRole="Blood_Type" ToRole="Medical_History" />
+        </EntityType>
+        <EntityType Name="Children">
+          <Key>
+            <PropertyRef Name="ID_Children" />
+          </Key>
+          <Property Name="ID_Children" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CUI" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Date_Birth" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ID_Genre" Type="Int32" />
+          <NavigationProperty Name="Adoption_Detail" Relationship="Self.Relationship7" FromRole="Children" ToRole="Adoption_Detail" />
+          <NavigationProperty Name="Genre" Relationship="Self.Relationship1" FromRole="Children" ToRole="Genre" />
+          <NavigationProperty Name="Medical_History" Relationship="Self.Relationship5" FromRole="Children" ToRole="Medical_History" />
+          <NavigationProperty Name="Temporal_Place" Relationship="Self.Relationship9" FromRole="Children" ToRole="Temporal_Place" />
+        </EntityType>
+        <EntityType Name="Genre">
+          <Key>
+            <PropertyRef Name="ID_Genre" />
+          </Key>
+          <Property Name="ID_Genre" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Genre_Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Adoptive_Parents" Relationship="Self.Relationship2" FromRole="Genre" ToRole="Adoptive_Parents" />
+          <NavigationProperty Name="Children" Relationship="Self.Relationship1" FromRole="Genre" ToRole="Children" />
+        </EntityType>
+        <EntityType Name="Illness">
+          <Key>
+            <PropertyRef Name="ID_Illeness" />
+          </Key>
+          <Property Name="ID_Illeness" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Medical_History" Relationship="Self.Relationship3" FromRole="Illness" ToRole="Medical_History" />
+        </EntityType>
+        <EntityType Name="Medical_History">
+          <Key>
+            <PropertyRef Name="ID_MedicalHistory" />
+          </Key>
+          <Property Name="ID_MedicalHistory" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Children" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ID_Illeness" Type="Int32" />
+          <Property Name="Treatment" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Evaluation_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ID_BloodType" Type="Int32" />
+          <NavigationProperty Name="Adoptive_Parents" Relationship="Self.Relationship6" FromRole="Medical_History" ToRole="Adoptive_Parents" />
+          <NavigationProperty Name="Blood_Type" Relationship="Self.Relationship11" FromRole="Medical_History" ToRole="Blood_Type" />
+          <NavigationProperty Name="Children" Relationship="Self.Relationship5" FromRole="Medical_History" ToRole="Children" />
+          <NavigationProperty Name="Illness" Relationship="Self.Relationship3" FromRole="Medical_History" ToRole="Illness" />
+        </EntityType>
+        <EntityType Name="Temporal_Place">
+          <Key>
+            <PropertyRef Name="ID_TemporalPlace" />
+          </Key>
+          <Property Name="ID_TemporalPlace" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Cellphone" Type="String" MaxLength="75" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ID_Children" Type="Int32" />
+          <Property Name="ID_TemporaryCaregiver" Type="Int32" />
+          <NavigationProperty Name="Children" Relationship="Self.Relationship9" FromRole="Temporal_Place" ToRole="Children" />
+          <NavigationProperty Name="Temporary_Caregiver" Relationship="Self.Relationship10" FromRole="Temporal_Place" ToRole="Temporary_Caregiver" />
+        </EntityType>
+        <EntityType Name="Temporary_Caregiver">
+          <Key>
+            <PropertyRef Name="ID_TemporaryCaregiver" />
+          </Key>
+          <Property Name="ID_TemporaryCaregiver" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Cellphone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Temporal_Place" Relationship="Self.Relationship10" FromRole="Temporary_Caregiver" ToRole="Temporal_Place" />
+        </EntityType>
+        <Association Name="Relationship7">
+          <End Role="Children" Type="Self.Children" Multiplicity="0..1" />
+          <End Role="Adoption_Detail" Type="Self.Adoption_Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Children">
+              <PropertyRef Name="ID_Children" />
+            </Principal>
+            <Dependent Role="Adoption_Detail">
+              <PropertyRef Name="ID_Children" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship8">
+          <End Role="Adoption_Detail" Type="Self.Adoption_Detail" Multiplicity="0..1" />
+          <End Role="Adoptive_Parents" Type="Self.Adoptive_Parents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Adoption_Detail">
+              <PropertyRef Name="ID_AdoptionDetail" />
+            </Principal>
+            <Dependent Role="Adoptive_Parents">
+              <PropertyRef Name="ID_AdoptionDetail" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship2">
+          <End Role="Genre" Type="Self.Genre" Multiplicity="0..1" />
+          <End Role="Adoptive_Parents" Type="Self.Adoptive_Parents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Genre">
+              <PropertyRef Name="ID_Genre" />
+            </Principal>
+            <Dependent Role="Adoptive_Parents">
+              <PropertyRef Name="ID_Genre" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship6">
+          <End Role="Medical_History" Type="Self.Medical_History" Multiplicity="0..1" />
+          <End Role="Adoptive_Parents" Type="Self.Adoptive_Parents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Medical_History">
+              <PropertyRef Name="ID_MedicalHistory" />
+            </Principal>
+            <Dependent Role="Adoptive_Parents">
+              <PropertyRef Name="ID_MedicalHistory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship11">
+          <End Role="Blood_Type" Type="Self.Blood_Type" Multiplicity="0..1" />
+          <End Role="Medical_History" Type="Self.Medical_History" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Blood_Type">
+              <PropertyRef Name="ID_BloodType" />
+            </Principal>
+            <Dependent Role="Medical_History">
+              <PropertyRef Name="ID_BloodType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship1">
+          <End Role="Genre" Type="Self.Genre" Multiplicity="0..1" />
+          <End Role="Children" Type="Self.Children" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Genre">
+              <PropertyRef Name="ID_Genre" />
+            </Principal>
+            <Dependent Role="Children">
+              <PropertyRef Name="ID_Genre" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship5">
+          <End Role="Children" Type="Self.Children" Multiplicity="0..1" />
+          <End Role="Medical_History" Type="Self.Medical_History" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Children">
+              <PropertyRef Name="ID_Children" />
+            </Principal>
+            <Dependent Role="Medical_History">
+              <PropertyRef Name="ID_Children" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship9">
+          <End Role="Children" Type="Self.Children" Multiplicity="0..1" />
+          <End Role="Temporal_Place" Type="Self.Temporal_Place" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Children">
+              <PropertyRef Name="ID_Children" />
+            </Principal>
+            <Dependent Role="Temporal_Place">
+              <PropertyRef Name="ID_Children" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship3">
+          <End Role="Illness" Type="Self.Illness" Multiplicity="0..1" />
+          <End Role="Medical_History" Type="Self.Medical_History" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Illness">
+              <PropertyRef Name="ID_Illeness" />
+            </Principal>
+            <Dependent Role="Medical_History">
+              <PropertyRef Name="ID_Illeness" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship10">
+          <End Role="Temporary_Caregiver" Type="Self.Temporary_Caregiver" Multiplicity="0..1" />
+          <End Role="Temporal_Place" Type="Self.Temporal_Place" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Temporary_Caregiver">
+              <PropertyRef Name="ID_TemporaryCaregiver" />
+            </Principal>
+            <Dependent Role="Temporal_Place">
+              <PropertyRef Name="ID_TemporaryCaregiver" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DulceCorazonEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Adoption_Detail" EntityType="Self.Adoption_Detail" />
+          <EntitySet Name="Adoptive_Parents" EntityType="Self.Adoptive_Parents" />
+          <EntitySet Name="Blood_Type" EntityType="Self.Blood_Type" />
+          <EntitySet Name="Children" EntityType="Self.Children" />
+          <EntitySet Name="Genre" EntityType="Self.Genre" />
+          <EntitySet Name="Illness" EntityType="Self.Illness" />
+          <EntitySet Name="Medical_History" EntityType="Self.Medical_History" />
+          <EntitySet Name="Temporal_Place" EntityType="Self.Temporal_Place" />
+          <EntitySet Name="Temporary_Caregiver" EntityType="Self.Temporary_Caregiver" />
+          <AssociationSet Name="Relationship7" Association="Self.Relationship7">
+            <End Role="Children" EntitySet="Children" />
+            <End Role="Adoption_Detail" EntitySet="Adoption_Detail" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship8" Association="Self.Relationship8">
+            <End Role="Adoption_Detail" EntitySet="Adoption_Detail" />
+            <End Role="Adoptive_Parents" EntitySet="Adoptive_Parents" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship2" Association="Self.Relationship2">
+            <End Role="Genre" EntitySet="Genre" />
+            <End Role="Adoptive_Parents" EntitySet="Adoptive_Parents" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship6" Association="Self.Relationship6">
+            <End Role="Medical_History" EntitySet="Medical_History" />
+            <End Role="Adoptive_Parents" EntitySet="Adoptive_Parents" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship11" Association="Self.Relationship11">
+            <End Role="Blood_Type" EntitySet="Blood_Type" />
+            <End Role="Medical_History" EntitySet="Medical_History" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship1" Association="Self.Relationship1">
+            <End Role="Genre" EntitySet="Genre" />
+            <End Role="Children" EntitySet="Children" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship5" Association="Self.Relationship5">
+            <End Role="Children" EntitySet="Children" />
+            <End Role="Medical_History" EntitySet="Medical_History" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship9" Association="Self.Relationship9">
+            <End Role="Children" EntitySet="Children" />
+            <End Role="Temporal_Place" EntitySet="Temporal_Place" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship3" Association="Self.Relationship3">
+            <End Role="Illness" EntitySet="Illness" />
+            <End Role="Medical_History" EntitySet="Medical_History" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship10" Association="Self.Relationship10">
+            <End Role="Temporary_Caregiver" EntitySet="Temporary_Caregiver" />
+            <End Role="Temporal_Place" EntitySet="Temporal_Place" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DulceCorazonModelStoreContainer" CdmEntityContainer="DulceCorazonEntities">
+          <EntitySetMapping Name="Adoption_Detail">
+            <EntityTypeMapping TypeName="DulceCorazonModel.Adoption_Detail">
+              <MappingFragment StoreEntitySet="Adoption_Detail">
+                <ScalarProperty Name="ID_AdoptionDetail" ColumnName="ID_AdoptionDetail" />
+                <ScalarProperty Name="Moving_Date" ColumnName="Moving_Date" />
+                <ScalarProperty Name="Adoption_Date" ColumnName="Adoption_Date" />
+                <ScalarProperty Name="Return_Date" ColumnName="Return_Date" />
+                <ScalarProperty Name="ID_Children" ColumnName="ID_Children" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Adoptive_Parents">
+            <EntityTypeMapping TypeName="DulceCorazonModel.Adoptive_Parents">
+              <MappingFragment StoreEntitySet="Adoptive_Parents">
+                <ScalarProperty Name="ID_AdoptiveParents" ColumnName="ID_AdoptiveParents" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Cellphone" ColumnName="Cellphone" />
+                <ScalarProperty Name="Work_Address" ColumnName="Work_Address" />
+                <ScalarProperty Name="ID_Genre" ColumnName="ID_Genre" />
+                <ScalarProperty Name="ID_MedicalHistory" ColumnName="ID_MedicalHistory" />
+                <ScalarProperty Name="ID_AdoptionDetail" ColumnName="ID_AdoptionDetail" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Blood_Type">
+            <EntityTypeMapping TypeName="DulceCorazonModel.Blood_Type">
+              <MappingFragment StoreEntitySet="Blood_Type">
+                <ScalarProperty Name="ID_BloodType" ColumnName="ID_BloodType" />
+                <ScalarProperty Name="Name_Blood" ColumnName="Name_Blood" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Children">
+            <EntityTypeMapping TypeName="DulceCorazonModel.Children">
+              <MappingFragment StoreEntitySet="Children">
+                <ScalarProperty Name="ID_Children" ColumnName="ID_Children" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CUI" ColumnName="CUI" />
+                <ScalarProperty Name="Date_Birth" ColumnName="Date_Birth" />
+                <ScalarProperty Name="ID_Genre" ColumnName="ID_Genre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Genre">
+            <EntityTypeMapping TypeName="DulceCorazonModel.Genre">
+              <MappingFragment StoreEntitySet="Genre">
+                <ScalarProperty Name="ID_Genre" ColumnName="ID_Genre" />
+                <ScalarProperty Name="Genre_Type" ColumnName="Genre_Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Illness">
+            <EntityTypeMapping TypeName="DulceCorazonModel.Illness">
+              <MappingFragment StoreEntitySet="Illness">
+                <ScalarProperty Name="ID_Illeness" ColumnName="ID_Illeness" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Medical_History">
+            <EntityTypeMapping TypeName="DulceCorazonModel.Medical_History">
+              <MappingFragment StoreEntitySet="Medical_History">
+                <ScalarProperty Name="ID_MedicalHistory" ColumnName="ID_MedicalHistory" />
+                <ScalarProperty Name="ID_Children" ColumnName="ID_Children" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ID_Illeness" ColumnName="ID_Illeness" />
+                <ScalarProperty Name="Treatment" ColumnName="Treatment" />
+                <ScalarProperty Name="Evaluation_Date" ColumnName="Evaluation_Date" />
+                <ScalarProperty Name="ID_BloodType" ColumnName="ID_BloodType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Temporal_Place">
+            <EntityTypeMapping TypeName="DulceCorazonModel.Temporal_Place">
+              <MappingFragment StoreEntitySet="Temporal_Place">
+                <ScalarProperty Name="ID_TemporalPlace" ColumnName="ID_TemporalPlace" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Cellphone" ColumnName="Cellphone" />
+                <ScalarProperty Name="ID_Children" ColumnName="ID_Children" />
+                <ScalarProperty Name="ID_TemporaryCaregiver" ColumnName="ID_TemporaryCaregiver" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Temporary_Caregiver">
+            <EntityTypeMapping TypeName="DulceCorazonModel.Temporary_Caregiver">
+              <MappingFragment StoreEntitySet="Temporary_Caregiver">
+                <ScalarProperty Name="ID_TemporaryCaregiver" ColumnName="ID_TemporaryCaregiver" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Cellphone" ColumnName="Cellphone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

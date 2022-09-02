@@ -1,0 +1,91 @@
+﻿@model Hogar_Dulce_Corazón____Juan_Palacios.Models.Adoptive_Parents
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Adoptive_Parents</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cellphone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cellphone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Work_Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Work_Address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Adoption_Detail.ID_AdoptionDetail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Adoption_Detail.ID_AdoptionDetail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Genre.Genre_Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Genre.Genre_Type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Medical_History.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Medical_History.Description)
+        </dd>
+
+    </dl>
+</div>
+<p class="btn btn-primary btn-lg">
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID_AdoptiveParents })
+</p>
+
+<p class="btn btn-primary btn-lg">
+    @Html.ActionLink("Back to List", "Index")
+</p>

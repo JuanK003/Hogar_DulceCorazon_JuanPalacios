@@ -1,0 +1,79 @@
+﻿@model IEnumerable<Hogar_Dulce_Corazón____Juan_Palacios.Models.Temporal_Place>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<style>
+    a {
+        color: aliceblue;
+    }
+
+        a:hover {
+            color: aliceblue
+        }
+</style>
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<h2>Agregar</h2>
+
+<p class="btn btn-primary btn-lg">
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<br />
+<br />
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cellphone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Children.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Temporary_Caregiver.Name)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cellphone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Children.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Temporary_Caregiver.Name)
+            </td>
+            <td>
+                <p class="btn btn-primary btn-lg">
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID_TemporalPlace })
+                </p>
+                <p class="btn btn-primary btn-lg">
+                    @Html.ActionLink("Details", "Details", new { id = item.ID_TemporalPlace })
+                </p>
+                <p class="btn btn-primary btn-lg">
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID_TemporalPlace })
+                </p>
+            </td>
+        </tr>
+    }
+
+</table>

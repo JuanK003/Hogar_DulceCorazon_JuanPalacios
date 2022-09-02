@@ -1,0 +1,75 @@
+﻿@model IEnumerable<Hogar_Dulce_Corazón____Juan_Palacios.Models.Children>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<style>
+    a {
+        color: aliceblue;
+    }
+
+        a:hover {
+            color: aliceblue
+        }
+</style>
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<h2>Agregar</h2>
+
+<p class="btn btn-primary btn-lg">
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CUI)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date_Birth)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Genre.Genre_Type)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CUI)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date_Birth)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Genre.Genre_Type)
+            </td>
+            <td>
+                <p class="btn btn-primary btn-lg">
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID_Children })
+                </p>
+                <p class="btn btn-primary btn-lg">
+                    @Html.ActionLink("Details", "Details", new { id = item.ID_Children })
+                </p>
+                <p class="btn btn-primary btn-lg">
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID_Children })
+                </p>
+            </td>
+        </tr>
+    }
+
+</table>

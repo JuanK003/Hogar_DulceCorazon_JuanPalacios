@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Hogar_Dulce_Corazón____Juan_Palacios.Models.Illness>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<style>
+    a {
+        color: aliceblue;
+    }
+
+        a:hover {
+            color: aliceblue
+        }
+</style>
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<h2>Agregar</h2>
+
+<p class="btn btn-primary btn-lg">
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                <p class="btn btn-primary btn-lg">
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID_Illeness })
+                </p>
+                <p class="btn btn-primary btn-lg">
+                    @Html.ActionLink("Details", "Details", new { id = item.ID_Illeness })
+                </p>
+                <p class="btn btn-primary btn-lg">
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID_Illeness })
+                </p>
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,35 @@
+﻿@model Hogar_Dulce_Corazón____Juan_Palacios.Models.Blood_Type
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Blood_Type</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name_Blood)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name_Blood)
+        </dd>
+
+    </dl>
+</div>
+<p class="btn btn-primary btn-lg">
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID_BloodType })
+</p>
+
+<p class="btn btn-primary btn-lg">
+    @Html.ActionLink("Back to List", "Index")
+</p>

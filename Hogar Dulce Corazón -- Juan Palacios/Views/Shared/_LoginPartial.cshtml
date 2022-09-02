@@ -1,0 +1,32 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <ul class="nav navbar-nav navbar-right">
+            <li> @Html.ActionLink("Niños", "Index", "Children")</li>
+            <li> @Html.ActionLink("Padres Adoptivos", "Index", "Adoptive_Parents")</li>
+            <li> @Html.ActionLink("Detalles de Adopción", "Index", "Adoption_Detail")</li>
+            <li> @Html.ActionLink("Historial Médico (niños)", "Index", "Medical_History")</li>
+            <li> @Html.ActionLink("Tipo de Sangre", "Index", "Blood_Type")</li>
+            <li> @Html.ActionLink("Enfermedades", "Index", "Illnesses")</li>
+            <li> @Html.ActionLink("Género", "Index", "Genres")</li>
+            <li> @Html.ActionLink("Hogares Temporales", "Index", "Temporal_Place")</li>
+            <li> @Html.ActionLink("Cuidadores Temporales", "Index", "Temporary_Caregiver")</li>
+            <li> @Html.ActionLink("Developer", "Contact", "Home")</li>
+            <li>
+                @Html.ActionLink("Hola 👋 " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+            </li>
+            <li><a href="javascript:document.getElementById('logoutForm').submit()">Cerrar sesión</a></li>
+        </ul>
+    }
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("Registrarse", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        <li>@Html.ActionLink("Iniciar sesión", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    </ul>
+}

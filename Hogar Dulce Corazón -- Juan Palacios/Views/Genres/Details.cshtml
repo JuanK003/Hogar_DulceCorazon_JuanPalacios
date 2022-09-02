@@ -1,0 +1,36 @@
+﻿@model Hogar_Dulce_Corazón____Juan_Palacios.Models.Genre
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Genre</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Genre_Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Genre_Type)
+        </dd>
+
+    </dl>
+</div>
+<p class="btn btn-primary btn-lg">
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID_Genre })
+</p>
+
+<p class="btn btn-primary btn-lg">
+    @Html.ActionLink("Back to List", "Index")
+</p>
