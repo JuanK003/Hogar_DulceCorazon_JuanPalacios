@@ -17,6 +17,45 @@
             <li> @Html.ActionLink("Cuidadores Temporales", "Index", "Temporary_Caregiver")</li>
             <li> @Html.ActionLink("Developer", "Contact", "Home")</li>
             <li>
+                <style>
+                    .goog-te-banner-frame.skiptranslate {
+                        display: none !important;
+                    }
+
+                    .skiptranslate.goog-te-gadget {
+                        color: rgb(34,34,34);
+                    }
+
+                    .goog-logo-link {
+                        display: none !important;
+                    }
+
+                    body {
+                        top: 0px !important;
+                    }
+                </style>
+
+                <div id="google_translate_element">
+                </div>
+                <script type="text/javascript">
+
+            function googleTranslateElementInit() {
+
+                new google.translate.TranslateElement({
+
+                    pageLanguage: 'en'
+
+                }, 'google_translate_element');
+
+            }
+
+                </script>
+                <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+                        type="text/javascript">
+
+                </script>
+            </li>
+            <li>
                 @Html.ActionLink("Hola 👋 " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
             </li>
             <li><a href="javascript:document.getElementById('logoutForm').submit()">Cerrar sesión</a></li>
